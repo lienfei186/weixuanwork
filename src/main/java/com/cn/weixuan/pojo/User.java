@@ -61,6 +61,10 @@ public class User implements Serializable {
 	private String profile_path;
 
 	private String personal;
+
+	private String beizhu;
+
+	private String recognizeState;
 	public Integer getUserId() {
 		return userId;
 	}

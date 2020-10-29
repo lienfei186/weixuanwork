@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.CreditInfoMapper">
+<!--    <select id="selectOne" resultType="com.cn.weixuan.pojo.User">-->
+<!--        SELECT-->
+<!--          *-->
+<!--        FROM-->
+<!--          sys_user-->
+<!--        WHERE userName = #{userName}-->
+<!--    </select>-->
+
+    <insert id="insertCreditInfo" parameterType="com.cn.weixuan.pojo.CreditInfo">
+        INSERT INTO `user_recognize`(`id`, `userName`, `name`, `idcard`, `yhkcard`, `beizhu`, `img1`, `img2`, `userType`
+        , `userId`, `telephone`, `email`,`address`,`sex`,`img3`,`legalname`,`busnissname`,`creditcode`,`business`,`img3`,`busnessaddress`,`type`)
+        VALUES (#{id}, #{userName}, #{name}, #{idcard}, #{yhkcard}, #{beizhu}, #{img1}, #{img2}, #{userType}
+        , #{userId}, #{telephone}, #{email}, #{address}, #{sex}, #{img3}, #{legalname}, #{busnissname}, #{creditcode}, #{business},#{img3},#{busnessaddress},#{type});
+    </insert>
+
+	<select id="selectCreditInfoId" resultType="com.cn.weixuan.pojo.CreditInfo">
+        SELECT
+          *
+        FROM
+          `user_credit`
+        WHERE `id` = #{id};
+    </select>
+    
+    <update id="updateCreditInfo" parameterType="com.cn.weixuan.pojo.CreditInfo">
+    	UPDATE `user_credit` SET userName = #{userName},sfzaddress = #{sfzaddress},name = #{name},idcard = #{idcard},yhkcard = #{yhkcard},beizhu = #{beizhu},legalname = #{legalname},busnissname = #{busnissname},creditcode = #{creditcode},business = #{business},busnessaddress = #{busnessaddress},type = #{type} WHERE id = #{id};
+    </update>
+    
+</mapper>

@@ -15,6 +15,12 @@ public interface UserEstimateMapper {
      */
     int insertEstimate(UserEstimate entity);
 
+    /**
+     * 查询此用户对此项目是否有过评价
+     * @param userId
+     * @param projectId
+     * @return
+     */
     int selectCountEstimate(Integer userId,Integer projectId);
 
     /**

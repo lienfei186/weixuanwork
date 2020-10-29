@@ -1,11 +1,13 @@
 package com.cn.weixuan.util;
 
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * @Title FileUtil
@@ -162,6 +164,30 @@ public class FileUtils {
         else
             return false;
     }
+    public static String img_base64(String path) {
+        /**
+         *  对path进行判断，如果是本地文件就二进制读取并base64编码，如果是url,则返回
+         */
+        String imgBase64="";
+        if (path.startsWith("http")){
+            imgBase64 = path;
+        }else {
+            try {
+                File file = new File(path);
+                byte[] content = new byte[(int) file.length()];
+                FileInputStream finputstream = new FileInputStream(file);
+                finputstream.read(content);
+                finputstream.close();
+                imgBase64 = new String(Base64.encodeBase64(content));
+            } catch (IOException e) {
+                e.printStackTrace();
+                return imgBase64;
+            }
+        }
+
+        return imgBase64;
+    }
+
 
 
 }

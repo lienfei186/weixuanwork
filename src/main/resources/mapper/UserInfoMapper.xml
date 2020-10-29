@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.UserInfoMapper">
+<!--    <select id="selectOne" resultType="com.cn.weixuan.pojo.User">-->
+<!--        SELECT-->
+<!--          *-->
+<!--        FROM-->
+<!--          sys_user-->
+<!--        WHERE userName = #{userName}-->
+<!--    </select>-->
+
+    <insert id="insertUserInfo" parameterType="com.cn.weixuan.pojo.UserInfo">
+        INSERT INTO `user_recognize`(`id`, `userName`, `name`, `idcard`, `yhkcard`, `beizhu`, `img1`, `img2`, `userType`
+        , `userId`, `telephone`, `email`,`address`,`sex`)
+        VALUES (#{id}, #{userName}, #{name}, #{idcard}, #{yhkcard}, #{beizhu}, #{img1}, #{img2}, #{userType}
+        , #{userId}, #{telephone}, #{email}, #{address}, #{sex});
+    </insert>
+
+    <select id="selectUserInfo" resultType="com.cn.weixuan.pojo.User">
+        SELECT
+          r.*
+        FROM
+          `sys_user` AS r
+        WHERE r.`phone` = #{phone};
+    </select>
+    
+    <select id="selectUserInfoIdcard" resultType="com.cn.weixuan.pojo.UserInfo">
+        SELECT
+          *
+        FROM
+          `user_recognize`
+        WHERE `id` = #{id};
+    </select>
+    
+    <update id="updateUserInfo" parameterType="com.cn.weixuan.pojo.UserInfo">
+    	UPDATE `user_recognize` SET userName = #{userName},name = #{name},idcard = #{idcard},yhkcard = #{yhkcard},beizhu = #{beizhu} WHERE id = #{id};
+    </update>
+</mapper>
