@@ -43,7 +43,7 @@ public class EducationalExpController {
     @RequestMapping(value = "/findEducational",produces = MediaType.APPLICATION_JSON_VALUE)
     public Response findEducational(String phone){
         List<EducationalExp> list = iEducationalExpService.selectEducational(phone);
-        if (list.size()>0 || list != null){
+        if (list != null || list.size()>0){
             return response.success("查询工作经历成功",list);
         }
         return response.failure("查询工作经历失败");
