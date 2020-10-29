@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.RolePermissionMapper">
+    <insert id="insertRolePermission">
+        INSERT INTO sys_role_permission
+        (permissionId,roleId)
+        VALUES
+        <foreach collection="permissionIds"
+                 separator=","
+                 item="permissionId">
+            (#{permissionId},#{roleId})
+        </foreach>
+    </insert>
+</mapper>

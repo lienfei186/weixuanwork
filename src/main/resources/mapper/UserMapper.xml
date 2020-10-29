@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.UserMapper">
+<!--    <select id="selectOne" resultType="com.cn.weixuan.pojo.User">-->
+<!--        SELECT-->
+<!--          *-->
+<!--        FROM-->
+<!--          sys_user-->
+<!--        WHERE userName = #{userName}-->
+<!--    </select>-->
+
+    <insert id="regist" parameterType="com.cn.weixuan.pojo.User">
+        INSERT INTO `sys_user`(`userId`, `createTime`, `email`, `expiredDate`, `name`, `password`, `salt`, `state`, `userName`
+        , `registIP`, `role`, `phone`, `idcard`)
+        VALUES (#{userId}, #{createTime}, #{email}, #{expiredDate}, #{name}, #{password}, #{salt}, #{state}, #{userName}
+        , #{registIP}, #{role}, #{phone}, #{idcard});
+    </insert>
+    <select id="findByUserList" resultType="com.cn.weixuan.pojo.User">
+        SELECT userName,phone,email,profile_path FROM sys_user WHERE userId=#{userId}
+    </select>
+    <select id="selectprofilePath" resultType="String">
+        SELECT profile_path FROM sys_user WHERE userId=#{userId}
+    </select>
+    <select id="selectUserId" resultType="com.cn.weixuan.pojo.User">
+        SELECT userId,role FROM sys_user WHERE phone=#{phone}
+    </select>
+    <update id="updateUserProfilePath">
+        UPDATE sys_user SET profile_path=#{newProfileName} WHERE userId=#{userId}
+    </update>
+    <update id="updateUserPersonal">
+        UPDATE sys_user SET personal=#{personal} WHERE userId=#{userId}
+    </update>
+    <select id="selectUserPersonal" resultType="String">
+        SELECT personal FROM sys_user WHERE userId=#{userId}
+    </select>
+    <select id="getUserName" resultType="String">
+        SELECT userName FROM sys_user WHERE userId=#{userId}
+    </select>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.UserEstimateMapper">
+    <insert id="insertEstimate">
+        INSERT INTO user_estimate
+        (userName,details,projectName,addTime,score,userId,projectId)
+        VALUES
+        (#{userName},#{details},#{projectName},now(),#{score},#{userId},#{projectId})
+    </insert>
+    <select id="findObjects" resultType="com.cn.weixuan.pojo.UserEstimate">
+            SELECT id,userName,details,projectName,addTime,score,userId,projectId,status FROM user_estimate
+            WHERE userId=#{userId}
+    </select>
+    <select id="selectCountEstimate" resultType="int">
+        SELECT COUNT(id) FROM user_estimate WHERE userId=#{userId} AND projectId=#{projectId}
+    </select>
+    <select id="getEstimatesCount" resultType="int">
+        SELECT COUNT(id) FROM user_estimate WHERE userId=#{userId}
+    </select>
+    <delete id="deleteEstimates">
+        DELETE FROM user_estimate WHERE id=#{id}
+    </delete>
+    <update id="updateEstimates">
+        UPDATE user_estimate SET
+        details=#{details},
+        score=#{score},
+        status=#{status}
+        WHERE id=#{id}
+    </update>
+    <select id="getStatus" resultType="Integer">
+        SELECT status FROM user_estimate WHERE id=#{id}
+    </select>
+</mapper>

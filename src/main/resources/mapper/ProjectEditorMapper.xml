@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.ProjectEditorMapper">
+    <insert id="insertProjectEditor">
+        INSERT INTO project_editor
+        (projectName,leadTime,projects,picture,url,userId)
+        VALUES
+        (#{projectName},#{leadTime},#{projects},#{picture},#{url},#{userId})
+    </insert>
+    <select id="selectProject" resultType="com.cn.weixuan.pojo.ProjectEditor">
+        SELECT projectId,projectName,leadTime,projects,picture,url FROM project_editor WHERE userId=#{userId}
+    </select>
+    <select id="findPicture" resultType="String">
+        SELECT picture FROM project_editor WHERE projectId=#{projectId}
+    </select>
+    <delete id="deleteProject">
+        DELETE FROM project_editor WHERE projectId=#{projectId}
+    </delete>
+    <update id="updateProject">
+        UPDATE project_editor SET
+        projectName=#{projectName},
+        leadTime=#{leadTime},
+        projects=#{projects},
+        picture=#{picture},
+        url=#{url}
+        WHERE projectId=#{projectId}
+    </update>
+</mapper>

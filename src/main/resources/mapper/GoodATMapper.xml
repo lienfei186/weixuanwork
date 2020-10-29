@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.GoodATMapper">
+    <insert id="insertGoodAT">
+        INSERT INTO user_goodat
+        (goodatName,userId)
+        VALUES
+        (#{goodatName},#{userId})
+    </insert>
+    <select id="selectUserSkills" resultType="com.cn.weixuan.pojo.GoodAT">
+        SELECT goodatId,goodatName,userId FROM user_goodat WHERE userId=#{userId}
+    </select>
+    <select id="countUserId" resultType="int">
+        SELECT COUNT (userId) FROM user_goodat WHERE userId=#{userId}
+    </select>
+    <update id="updateUserSkills">
+        UPDATE user_goodat SET
+        goodatName=#{goodatName}
+        WHERE userId=#{userId}
+    </update>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cn.weixuan.dao.WorkExperienceMapper">
+    <insert id="insertUserWork">
+        INSERT INTO work_experience
+        (companyName,startTime,endTime,jobtitle,jubduties,userId)
+        VALUES
+        (#{companyName},#{startTime},#{endTime},#{jobtitle},#{jubduties},#{userId})
+    </insert>
+    <select id="selectWork" resultType="com.cn.weixuan.pojo.WorkExperience">
+        SELECT  workId,companyName,startTime,endTime,jobtitle,jubduties FROM work_experience WHERE userid=#{userId}
+    </select>
+    <update id="updateWork">
+        UPDATE work_experience SET
+            companyName=#{companyName},
+            startTime=#{startTime},
+            endTime=#{endTime},
+            jobtitle=#{jobtitle},
+            jubduties=#{jubduties}
+            WHERE workId=#{workId}
+    </update>
+    <delete id="deleteWork">
+        DELETE FROM work_experience WHERE workId=#{workId}
+    </delete>
+</mapper>

@@ -1,0 +1,93 @@
+server:
+  port: 8081
+  max-http-header-size: 4048576
+  disableUploadTimeout: false
+devtools:
+  restart:
+    enabled: true
+    additional-paths: resources/**,static/**,templates/**
+local-temp-path: d:/temp/
+web.upload-path: D:/picsSping/
+web.pdf-path: D:/pdf/
+web.attach.image.upload.path:  D:/picsAttach/
+web.attach.sign.image.upload.path: D:/picsSign/
+spring.mvc.static-path-pattern: /**
+spring.server.MaxFileSize: -1
+spring.server.MaxRequestSize: -1
+spring.resources.static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.pdf-path},file:${web.upload-path},file:${web.attach.image.upload.path},file:${web.attach.sign.image.upload.path}
+spring:
+  datasource:
+    name: mysql_test
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      filters: stat
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://rm-bp18j7349b355avsjro.mysql.rds.aliyuncs.com:3306/weixuantest?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: development
+      password: whalefor#202006
+      initial-size: 1
+      min-idle: 2
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x' FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+  redis:
+    host: 47.108.128.22
+    port: 6379
+    timeout: 6000
+    password: test123456
+#  boot:
+#    admin:
+#      client:
+#        url: http://127.0.0.1:8000
+#        instance:
+#          name: CentralHospital-Angular
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.cn.weixuan.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
+
+#logging.path: C:/logs/001spring
+#logging.file: 001Spring.log
+#logging.level.root: info
+#logging.level.com.tongyu: info
+
+#logging:
+#  level:
+#    com.cn.weixuan: INFO
+#  file: D:/logs/all.log
+#  root: INFO
+#management:
+#  endpoints:
+#    health:
+#      health: always
+#    info:
+#      enabled: true
+#    web:
+#      base-path: /actuator
+#      exposure:
+#        include: '*'
+#        exclude: env,metrics
+
+
+
+sms:
+  template:
+    login: 【威选网】您的登录验证码：{1}，有效期{2}分钟，验证码提供给他人可能导致帐号被盗，请勿泄露，谨防被骗。
+    regist: 【威选网】您的注册验证码：{1}，有效期{2}分钟，验证码提供给他人可能导致帐号被盗，请勿泄露，谨防被骗。
+    repasswd: 【威选网】您的重置密码验证码：{1}，有效期{2}分钟，验证码提供给他人可能导致帐号被盗，请勿泄露，谨防被骗。
+
+
