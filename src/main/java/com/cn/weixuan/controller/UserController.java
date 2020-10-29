@@ -255,7 +255,7 @@ public class UserController {
     @ResponseBody
     public Response listUser(HttpServletRequest request) {
         List<User> users = this.iUserService.listUsers();
-        return response.success("查询成功！", users);
+        return response.success(0,"查询成功！", users);
     }
 
     /**
@@ -268,7 +268,7 @@ public class UserController {
     public Response saveUserPersonal(String personal,String phone){
         int rows = iUserService.updateUserPersonal(personal,phone);
         if (rows > 0){
-            return response.success("个人介绍修改成功",null);
+            return response.success(0,"个人介绍修改成功",null);
         }
         return response.failure("个人介绍修改成功");
     }
@@ -282,8 +282,10 @@ public class UserController {
     public Response findPersonal(String phone){
         String personal = iUserService.selectUserPersonal(phone);
         if (!personal.equals(null)){
-            return response.success("个人介绍查询成功",personal);
+            return response.success(0,"个人介绍查询成功",personal);
         }
         return response.failure("个人介绍查询失败");
     }
+
+
 }
